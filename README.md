@@ -1,4 +1,4 @@
-# Artificial intelligence in image processing tasks course at Kyiv Polytechnic University
+# Artificial intelligence in image processing tasks course at Kyiv Polytechnic Institute
 
 ## Description
 
