@@ -7,27 +7,34 @@ Task #2
 """
 
 import cv2
-import numpy as np
+from config import Config
+from cascades import face_cascade, eye_cascade, smile_cascade
 
-hog = cv2.HOGDescriptor()
-hog.setSVMDetector(cv2.HOGDescriptor_getDefaultPeopleDetector())
-cv2.startWindowThread()
 
-cap = cv2.VideoCapture("../images/people_walk.mp4")
-while True:
-    ret, frame = cap.read()
-    try:
-        frame = cv2.resize(frame, (800, 560))
-    except:
-        continue
-    gray_filter = cv2.cvtColor(frame, cv2.COLOR_RGB2GRAY)
-    boxes, weights = hog.detectMultiScale(frame, winStride=(8, 8))
-    boxes = np.array([[x, y, x + w, y + h] for (x, y, w, h) in boxes])
-    for (xa, ya, xb, yb) in boxes:
-        cv2.rectangle(frame, (xa, ya), (xb, yb), (0, 255, 255), 1)
+cap = cv2.VideoCapture(0)
 
-    cv2.imshow("Video", frame)
-    if cv2.waitKey(1) & 0XFF == ord('q'):
+while 1:
+    ret, img = cap.read()
+    gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+    faces = face_cascade.detectMultiScale(gray, Config.scaling_factor, Config.min_neighbors)
+
+    for (x, y, w, h) in faces:
+        cv2.rectangle(img, (x, y), (x + w, y + h), (255, 0, 0), 2)
+        roi_gray = gray[y:y + h, x:x + w]
+        roi_color = img[y:y + h, x:x + w]
+
+        eyes = eye_cascade.detectMultiScale(roi_gray)
+        for (ex, ey, ew, eh) in eyes:
+            cv2.rectangle(roi_color, (ex, ey), (ex + ew, ey + eh), (0, 255, 0), 2)
+
+        # smiles = smile_cascade.detectMultiScale(roi_gray)
+        # for (sx, sy, sw, sh) in smiles:
+        #     cv2.rectangle(roi_color, (sx, sy), (sx + sw, sy + sh), (0, 0, 255), 2)
+
+    cv2.imshow('img', img)
+    k = cv2.waitKey(30) & 0xff
+    if k == 27:
         break
+
 cap.release()
 cv2.destroyAllWindows()

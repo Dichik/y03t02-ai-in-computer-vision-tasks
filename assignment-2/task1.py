@@ -7,20 +7,13 @@ Task #1
 """
 
 import cv2
-
-
-class Config:
-    scaling_factor = 1.3
-    min_neighbors = 5
+from config import Config
+from cascades import face_cascade, eye_cascade, smile_cascade
 
 
 def detect_face_objects():
     image_path = '../images/people_smiling.jpg'
     # image_path = '../images/smile_person.png'
-
-    face_cascade = cv2.CascadeClassifier(f"{cv2.data.haarcascades}haarcascade_frontalface_default.xml")  # What does it mean? research it deeper
-    smile_cascade = cv2.CascadeClassifier(f"{cv2.data.haarcascades}haarcascade_smile.xml")
-    eye_cascade = cv2.CascadeClassifier(f"{cv2.data.haarcascades}haarcascade_eye.xml")
 
     frame = cv2.imread(image_path)
 
