@@ -29,7 +29,7 @@ def detect_people():
         boxes, weights = hog.detectMultiScale(gray, winStride=(8, 8))  # FIXME it can work much better
         print(f"Number of boxes: {len(boxes)}")
 
-        boxes = np.array([[x, y, x + w, y + w] for (x, y, w, h) in boxes])
+        boxes = np.array([[x, y, x + w, y + h] for (x, y, w, h) in boxes])
         for (xb, yb, wb, hb) in boxes:
             cv2.rectangle(img, (xb, yb), (wb, hb), (0, 255, 0), 1)
 
