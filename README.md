@@ -7,4 +7,6 @@ To be added...
 ## Assignments 
 
 - [Assignment 1](assignment-1/assignment-1.ipynb)
-- [Assignment 2](assignment-2/assignment-2.ipynb)
+- [Assignment 2](assignment-2/)
+- [Assignment 3](assignment-3/)
+
