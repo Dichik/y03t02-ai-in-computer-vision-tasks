@@ -37,7 +37,6 @@ def draw_lines(img, lines, color=[255, 0, 0], thickness=7):
         cv2.line(img, (lines_mean[i, 0], lines_mean[i, 1]), (lines_mean[i, 2], lines_mean[i, 3]), color, thickness)
 
 
-
 def process_image(img):
     grayscale = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
 
@@ -76,8 +75,7 @@ def process_image(img):
         print("error...")
 
 
-
-video_capture = cv2.VideoCapture('./resources/driving-800.mp4')
+video_capture = cv2.VideoCapture('./resources/road.mp4')
 while video_capture.isOpened():
     ret, frame = video_capture.read()
     if ret:

@@ -37,7 +37,6 @@ def draw_lines(img, lines, color=[255, 0, 0], thickness=7):
         cv2.line(img, (lines_mean[i, 0], lines_mean[i, 1]), (lines_mean[i, 2], lines_mean[i, 3]), color, thickness)
 
 
-
 def process_image(img):
     grayscale = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
 
@@ -74,7 +73,6 @@ def process_image(img):
 
 
 img = cv2.imread("./resources/road2.jpg")
-
 
 process_image(img)
 
