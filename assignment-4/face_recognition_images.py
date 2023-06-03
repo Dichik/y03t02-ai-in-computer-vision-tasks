@@ -6,7 +6,7 @@ from utils import face_encodings, nb_of_matches, face_rects
 with open("encodings.pickle", "rb") as f:
     name_encodings = pickle.load(f)
 
-image = cv2.imread("examples/1.jpg")
+image = cv2.imread("examples/3.jpg")
 
 encodings = face_encodings(image)
 
