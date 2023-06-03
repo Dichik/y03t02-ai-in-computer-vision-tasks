@@ -8,6 +8,7 @@ from utils import get_image_paths, face_encodings
 root_dir = "dataset"
 class_names = os.listdir(root_dir)
 
+print(class_names)
 
 image_paths = get_image_paths(root_dir, class_names)
 
